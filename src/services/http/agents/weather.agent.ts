@@ -1,5 +1,5 @@
 const SLUG =
-  'https://api.openweathermap.org/data/3.0/onecall?lat={56.19}&lon={44.00}&appid={589f53d38b69ac8a17c1be5c47575d37}';
+  'https://api.openweathermap.org/data/2.5/weather?id=520555&appid=589f53d38b69ac8a17c1be5c47575d37';
 
 export const fetchWeatherData = async () => {
   try {

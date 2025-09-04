@@ -1,1 +1,2 @@
-export { Calendar } from './calendar';
+export { Calendar } from './components';
+export { useCalendar } from './hooks';

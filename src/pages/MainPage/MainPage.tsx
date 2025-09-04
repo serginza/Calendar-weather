@@ -1,8 +1,10 @@
 import { memo } from 'react';
-import { Calendar } from 'modules';
+import { Calendar, useCalendar } from 'modules';
 
 function MainPageProto() {
-  return <Calendar />;
+  const calendar = useCalendar();
+
+  return <Calendar {...calendar} />;
 }
 
 const MainPage = memo(MainPageProto);

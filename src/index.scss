@@ -1,0 +1,46 @@
+@font-face {
+  font-family: 'PTSans';
+  src: url(./shared/assets/fonts/PTSans-Regular.ttf);
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Audiowide';
+  src: url(./shared/assets/fonts/Audiowide-Regular.ttf);
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ProstoOne';
+  src: url(./shared/assets/fonts/ProstoOne-Regular.ttf);
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-ptsans: 'PTSans', sans-serif;
+  --font-audiowide: 'Audiowide', 'PTSans';
+  --font-prosto-one: 'ProstoOne', sans-serif;
+  --frosted-white-100: rgba(254, 254, 253, 1);
+  --steel-gray-100: rgba(77, 102, 114, 1);
+  --steel-gray-100: rgba(77, 102, 114, 1);
+  --steel-gray-20: rgba(77, 102, 114, 0.2);
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  // TODO: найти другой шрифт
+  font-family: var(--font-audiowide);
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

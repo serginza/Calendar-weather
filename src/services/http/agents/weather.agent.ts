@@ -1,9 +1,11 @@
-const SLUG =
-  'https://api.openweathermap.org/data/2.5/weather?id=520555&appid=589f53d38b69ac8a17c1be5c47575d37';
+const SLUG = 'https://openweathermap.org';
+const SLUG_API = 'https://api.openweathermap.org/';
 
 export const fetchWeatherData = async () => {
   try {
-    const response = await fetch(SLUG);
+    const response = await fetch(
+      `${SLUG_API}data/2.5/weather?id=520555&appid=589f53d38b69ac8a17c1be5c47575d37`
+    );
 
     if (!response.ok) {
       throw new Error(`HTTP Error: ${response.status}`);
@@ -15,3 +17,5 @@ export const fetchWeatherData = async () => {
     return;
   }
 };
+
+export const getWeatherImg = (code) => `${SLUG}/img/wn/${code}.png`;

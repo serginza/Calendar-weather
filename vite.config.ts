@@ -15,6 +15,7 @@ export default defineConfig({
       pages: path.resolve(__dirName, 'src/pages'),
       modules: path.resolve(__dirName, 'src/modules'),
       services: path.resolve(__dirName, 'src/services'),
+      entities: path.resolve(__dirName, 'src/entities'),
       shared: path.resolve(__dirName, 'src/shared'),
     },
   },

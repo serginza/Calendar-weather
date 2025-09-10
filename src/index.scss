@@ -25,7 +25,7 @@
 :root {
   --font-ptsans: 'PTSans', sans-serif;
   --font-audiowide: 'Audiowide', 'PTSans';
-  --font-prosto-one: 'ProstoOne', sans-serif;
+  --font-prosto-one: 'ProstoOne', 'Audiowide';
   --frosted-white-100: rgba(254, 254, 253, 1);
   --steel-gray-100: rgba(77, 102, 114, 1);
   --steel-gray-100: rgba(77, 102, 114, 1);
@@ -36,7 +36,7 @@ body {
   height: 100%;
   width: 100%;
   // TODO: найти другой шрифт
-  font-family: var(--font-audiowide);
+  font-family: var(--font-prosto-one);
 }
 
 button {

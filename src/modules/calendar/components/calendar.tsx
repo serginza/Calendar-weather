@@ -1,26 +1,20 @@
 import { memo } from 'react';
+import { getWeatherImg } from 'services/http/agents';
 import { MONTHS, WEEK_DAYS } from 'shared/constants';
+import type { CalendarProps } from './calendar.types';
 import './calendar.style.scss';
-
-// TODO: вынести
-type CalendarProps = {
-  year: number;
-  month: number;
-  cells: number[];
-  prevMonth: () => void;
-  nextMonth: () => void;
-  isToday: (day: number) => boolean;
-  holidayStyle: (index: number) => 'calendar__cell--holiday' | '';
-};
 
 function CalendarProto({
   year,
   month,
   cells,
+  // selectedDay,
   prevMonth,
   nextMonth,
+  // toggleDay,
   isToday,
   holidayStyle,
+  weatherData,
 }: CalendarProps) {
   return (
     <div className="calendar">
@@ -30,7 +24,7 @@ function CalendarProto({
           {'<<'}
         </button>
         <div className="calendar__title">
-          <div className="calendar__month">{MONTHS[month].toUpperCase()}</div>
+          <div className="calendar__month">{MONTHS[month]}</div>
           <div className="calendar__year">{year}</div>
         </div>
 
@@ -47,6 +41,7 @@ function CalendarProto({
         ))}
       </section>
 
+      {/* TODO: вынести и добавить accordeon со списком дел */}
       <section className="calendar__grid">
         {cells.map((day, index) => (
           <div
@@ -55,7 +50,18 @@ function CalendarProto({
               ${holidayStyle(index)}`}
             key={index}
           >
-            {day !== 0 ? day : ''}
+            <div>{day !== 0 ? day : ''}</div>
+            {isToday(day) && (
+              <div className="calendar__weather">
+                <img
+                  className="calendar__weather--cloudness"
+                  src={getWeatherImg(weatherData?.weather[0].icon)}
+                ></img>
+                <div className="calendar__weather--temp">
+                  {weatherData?.temp}
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </section>

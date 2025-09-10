@@ -1,1 +1,1 @@
-export { fetchWeatherData } from './weather.agent';
+export { fetchWeatherData, getWeatherImg } from './weather.agent';

@@ -1,1 +1,1 @@
-export * from './'
+export { weatherAdapter } from './weather.adapter';

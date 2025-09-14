@@ -11,6 +11,8 @@
     "paths": {
       "app/*": ["app/*"],
       "pages/*": ["pages/*"],
+      "widgets/*": ["widgets/*"],
+      "features/*": ["features/*"],
       "modules/*": ["modules/*"],
       "services/*": ["services/*"],
       "entities/*": ["entities/*"],

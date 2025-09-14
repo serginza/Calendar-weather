@@ -22,3 +22,8 @@ export const MONTHS = [
   'NOVEMBER',
   'DECEMBER',
 ] as const;
+
+export const DATE = new Date();
+export const CURRENT_DAY = DATE.getDate();
+export const CURRENT_MONTH = DATE.getMonth();
+export const CURRENT_YEAR = DATE.getFullYear();

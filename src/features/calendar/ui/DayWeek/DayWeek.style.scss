@@ -1,0 +1,23 @@
+  .day-week-container {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    box-sizing: border-box;
+    padding: 10px;
+    align-items: center;
+    color: var(--steel-gray-100);
+
+    .day-week {
+      min-height: 30px;
+      display: flex;
+      justify-content: center;
+      box-sizing: border-box;
+      align-items: center;
+    }
+
+    .holiday {
+      color: rgba(232, 26, 26, 1);
+    }
+}

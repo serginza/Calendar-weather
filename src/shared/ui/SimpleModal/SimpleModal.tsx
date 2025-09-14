@@ -6,7 +6,7 @@ import {
   DialogTitle,
   Typography,
 } from '@mui/material';
-import { memo } from 'react';
+import { memo, type JSX } from 'react';
 
 export type ConclusionModalProps = {
   open: boolean;

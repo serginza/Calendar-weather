@@ -1,11 +1,12 @@
 import { memo } from 'react';
-import { Control, Controller, FieldValues, Path } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
+import type { Control, FieldValues, Path } from 'react-hook-form';
 import {
   Checkbox,
-  CheckboxProps,
+  type CheckboxProps,
   FormControl,
   FormControlLabel,
-  FormControlLabelProps,
+  type FormControlLabelProps,
 } from '@mui/material';
 
 export type CheckboxElementProps<T extends FieldValues> = Omit<

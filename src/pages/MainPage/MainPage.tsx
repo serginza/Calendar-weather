@@ -1,11 +1,8 @@
 import { memo } from 'react';
-import { Calendar, useCalendar, useWeather } from 'modules';
+import { Calendar } from 'widgets/calendar';
 
 function MainPageProto() {
-  const calendar = useCalendar();
-  const weatherData = useWeather();
-
-  return <Calendar weatherData={weatherData} {...calendar} />;
+  return <Calendar />;
 }
 
 const MainPage = memo(MainPageProto);

@@ -13,6 +13,8 @@ export default defineConfig({
     alias: {
       app: path.resolve(__dirName, 'src/app'),
       pages: path.resolve(__dirName, 'src/pages'),
+      widgets: path.resolve(__dirName, 'src/widgets'),
+      features: path.resolve(__dirName, 'src/features'),
       modules: path.resolve(__dirName, 'src/modules'),
       services: path.resolve(__dirName, 'src/services'),
       entities: path.resolve(__dirName, 'src/entities'),

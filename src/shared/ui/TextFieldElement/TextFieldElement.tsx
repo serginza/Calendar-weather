@@ -1,6 +1,7 @@
 import { memo } from 'react';
-import { Controller, Control, FieldValues, Path } from 'react-hook-form';
-import { TextField, TextFieldProps } from '@mui/material';
+import { Controller } from 'react-hook-form';
+import type { Control, FieldValues, Path } from 'react-hook-form';
+import { TextField, type TextFieldProps } from '@mui/material';
 
 type TextFieldElementProps<T extends FieldValues> = Omit<
   TextFieldProps,

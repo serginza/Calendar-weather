@@ -1,3 +1,3 @@
 export * from './calendar';
-export * from './task';
+export * from './DayCard';
 export * from './weather';

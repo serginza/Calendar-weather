@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { MONTHS } from 'shared/constants';
 import type { MonthSliderProps } from './MonthSlider.types';
-import './MonthSlider.style.scss';
+import './MonthSlider.styles.scss';
 
 function MonthSliderProto({
   month,

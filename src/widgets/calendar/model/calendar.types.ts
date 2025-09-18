@@ -1,4 +1,4 @@
-import type { WeatherType } from '../../../entities/weather/model/weather.types';
+import type { WeatherType } from 'entities/weather';
 
 export type CalendarProps = {
   year: number;
@@ -10,5 +10,5 @@ export type CalendarProps = {
   toggleDay: (day: number) => void;
   isToday: (day: number) => boolean;
   holidayStyle: (index: number) => 'calendar__cell--holiday' | '';
-  weatherData: WeatherType | null;
+  weatherData: WeatherType;
 };

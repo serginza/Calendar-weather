@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { WEEK_DAYS } from 'shared/constants';
-import './DayWeek.style.scss';
+import './DayWeek.styles.scss';
 
 function DayWeekProto() {
   return (

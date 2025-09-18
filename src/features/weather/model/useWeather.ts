@@ -6,15 +6,18 @@ import {
 } from 'entities/weather';
 
 export function useWeather() {
-  const [weatherData, setWeatherData] = useState<WeatherType | null>(null);
+  const [weatherData, setWeatherData] = useState<WeatherType>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    fetchWeatherData().then((data) => {
-      console.log('data', weatherAdapter(data));
-      return setWeatherData(weatherAdapter(data));
-    });
+    setIsLoading(true);
+    fetchWeatherData()
+      .then((data) => {
+        console.log('data', weatherAdapter(data));
+        return setWeatherData(weatherAdapter(data));
+      })
+      .finally(() => setIsLoading(false));
     return () => setWeatherData(null);
   }, []);
-
-  return weatherData;
+  return { weatherData, isLoading };
 }

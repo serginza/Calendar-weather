@@ -44,9 +44,13 @@ export function useCalendar() {
     setSelectedDay(null);
   }, [month, year]);
 
-  const isToday = (day: number) =>
-    CURRENT_YEAR === year && CURRENT_MONTH === month && day === CURRENT_DAY;
+  const isToday = useCallback(
+    (day: number) =>
+      CURRENT_YEAR === year && CURRENT_MONTH === month && day === CURRENT_DAY,
+    [month, year]
+  );
 
+  // TODO: переместить в стили
   const holidayStyle = (index: number) =>
     index % 7 === 5 || index % 7 === 6 ? 'calendar__cell--holiday' : '';
 

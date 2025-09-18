@@ -4,3 +4,4 @@ export { WithSkeleton } from './Skeleton';
 export { SimpleModal } from './SimpleModal';
 export { DotsLoader } from './DotsLoader';
 export { InfoField } from './InfoField';
+export { Icon } from './Icon';

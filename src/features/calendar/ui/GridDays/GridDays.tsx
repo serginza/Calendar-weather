@@ -1,7 +1,8 @@
 import { memo } from 'react';
-import { getWeatherImg } from 'entities/weather';
 import type { GridDaysProps } from './GridDays.types';
-import './GridDays.style.scss';
+import './GridDays.styles.scss';
+import { WithSkeleton } from 'shared/ui';
+import { WeatherIcon } from 'entities/weather';
 
 function GridDaysProto({
   weeks,
@@ -9,33 +10,45 @@ function GridDaysProto({
   isToday,
   toggleDay,
   weatherData,
+  isLoading,
   children,
 }: GridDaysProps) {
   return weeks.map((week, wIndex) => (
     <div key={wIndex}>
       <div className="day-week-container">
         {week.map((day, index) => {
-          const gridIndex = wIndex * 7 + index;
+          const cellIndex = wIndex * 7 + index;
 
           return (
             <div
-              key={gridIndex}
+              key={cellIndex}
+              // TODO: вынести логику стилистики в стили или в хук
               className={`cell 
                 ${isToday(day) ? 'today' : ''} 
-                ${gridIndex % 7 === 5 || gridIndex % 7 === 6 ? 'holiday' : ''}
+                ${cellIndex % 7 === 5 || cellIndex % 7 === 6 ? 'holiday' : ''}
                 ${day === selectedDay ? 'selected-day' : ''}`}
               onClick={() => day !== 0 && toggleDay(day)}
             >
               <div>{day !== 0 ? day : ''}</div>
               {isToday(day) && (
-                <div className="weather">
-                  <img
-                    className="cloudness"
-                    // TODO: заменить API (с прогнозом) и сделать свои иконки
-                    src={getWeatherImg(weatherData?.weather[0].icon)}
-                  ></img>
-                  <div className="temp">{weatherData?.temp}</div>
-                </div>
+                <WithSkeleton
+                  isLoading={isLoading}
+                  children={
+                    weatherData && (
+                      <div className="weather">
+                        <WeatherIcon
+                          snowfall={weatherData.current.snowfall}
+                          clouds={weatherData.current.clouds}
+                          rain={weatherData.current.rain}
+                          isDay={weatherData.current.isDay}
+                        />
+                        <div className="temp">
+                          {weatherData?.current.temp + '°C'}
+                        </div>
+                      </div>
+                    )
+                  }
+                />
               )}
             </div>
           );

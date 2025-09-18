@@ -1,10 +1,11 @@
 import { memo } from 'react';
 import { DayWeek, GridDays, MonthSlider, useCalendar } from 'features/calendar';
 import { useWeather } from 'features/weather';
-import { CalendarWrapper } from './calendar.style';
-import { Tasks } from 'features/task';
+import { DayCard } from 'features/DayCard';
+import { CalendarWrapper } from './calendar.styles';
 
 function CalendarProto() {
+  // TODO: передавать пропсы контекстом
   const {
     year,
     month,
@@ -16,7 +17,8 @@ function CalendarProto() {
     isToday,
   } = useCalendar();
 
-  const weatherData = useWeather();
+  // TODO: передавать пропсы контекстом
+  const { weatherData, isLoading } = useWeather();
   return (
     <CalendarWrapper>
       <MonthSlider
@@ -32,8 +34,9 @@ function CalendarProto() {
         isToday={isToday}
         toggleDay={toggleDay}
         weatherData={weatherData}
+        isLoading={isLoading}
       >
-        <Tasks weatherData={weatherData} />
+        <DayCard weatherData={weatherData} isLoading={isLoading} />
       </GridDays>
     </CalendarWrapper>
   );

@@ -1,4 +1,5 @@
 export * from './constants';
-export * from './ui';
-export * from './styles';
 export * from './helpers';
+export * from './styles';
+export * from './types';
+export * from './ui';

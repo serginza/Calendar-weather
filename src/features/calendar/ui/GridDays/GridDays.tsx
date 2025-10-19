@@ -1,8 +1,8 @@
 import { memo } from 'react';
+import { Icon, WithSkeleton } from 'shared/ui';
 import type { GridDaysProps } from './GridDays.types';
 import './GridDays.styles.scss';
-import { WithSkeleton } from 'shared/ui';
-import { WeatherIcon } from 'entities/weather';
+import { DayCard } from '../DayCard';
 
 function GridDaysProto({
   weeks,
@@ -11,7 +11,6 @@ function GridDaysProto({
   toggleDay,
   weatherData,
   isLoading,
-  children,
 }: GridDaysProps) {
   return weeks.map((week, wIndex) => (
     <div key={wIndex}>
@@ -36,14 +35,14 @@ function GridDaysProto({
                   children={
                     weatherData && (
                       <div className="weather">
-                        <WeatherIcon
-                          snowfall={weatherData.current.snowfall}
-                          clouds={weatherData.current.clouds}
-                          rain={weatherData.current.rain}
-                          isDay={weatherData.current.isDay}
+                        <Icon
+                          path={`src/shared/assets/icons/weather/${weatherData.current.iconName}.svg`}
+                          alt={weatherData.current.iconName}
+                          width={'32px'}
+                          height={'32px'}
                         />
                         <div className="temp">
-                          {weatherData?.current.temp + '°C'}
+                          {weatherData?.current.temp + weatherData.units.temp}
                         </div>
                       </div>
                     )
@@ -55,7 +54,9 @@ function GridDaysProto({
         })}
       </div>
 
-      {week.includes(selectedDay ?? -1) && children}
+      {week.includes(selectedDay ?? -1) && (
+        <DayCard weatherData={weatherData} isLoading={isLoading} />
+      )}
     </div>
   ));
 }

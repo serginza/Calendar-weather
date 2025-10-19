@@ -1,0 +1,14 @@
+.day-tasks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .task {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    outline: 1px solid grey;
+    border-radius: 10px;
+  }
+}

@@ -22,10 +22,29 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Geologica';
+  src: url(./shared/assets/fonts/Geologica-Regular.ttf);
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GeologicaBold';
+  src: url(./shared/assets/fonts/Geologica_Auto-Bold.ttf);
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 :root {
   --font-ptsans: 'PTSans', sans-serif;
   --font-audiowide: 'Audiowide', 'PTSans';
   --font-prosto-one: 'ProstoOne', 'Audiowide';
+  --font-geologica: 'Geologica', 'ProstoOne';
+  --font-geologica-bold: 'GeologicaBold', 'Geologica';
   --frosted-white-100: rgba(254, 254, 253, 1);
   --steel-gray-100: rgba(77, 102, 114, 1);
   --steel-gray-100: rgba(77, 102, 114, 1);
@@ -36,7 +55,7 @@ body {
   height: 100%;
   width: 100%;
   // TODO: найти другой шрифт
-  font-family: var(--font-prosto-one);
+  font-family: var(--font-geologica);
 }
 
 button {

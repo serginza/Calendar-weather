@@ -1,8 +1,8 @@
 import { memo } from 'react';
-import { Calendar } from 'widgets/calendar';
+import { CalendarWidget } from 'widgets/calendar';
 
 function MainPageProto() {
-  return <Calendar />;
+  return <CalendarWidget />;
 }
 
 const MainPage = memo(MainPageProto);

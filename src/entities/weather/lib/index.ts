@@ -1,1 +1,0 @@
-export { getWeatherIconName } from './getWeatherIconName';

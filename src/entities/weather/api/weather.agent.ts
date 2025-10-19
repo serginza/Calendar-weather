@@ -1,10 +1,11 @@
 const SLUG = 'https://openweathermap.org';
 const SLUG_API = 'https://api.openweathermap.org/';
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 export const fetchWeatherData = async () => {
   try {
     const response = await fetch(
-      `${SLUG_API}data/2.5/weather?id=520555&appid=589f53d38b69ac8a17c1be5c47575d37`
+      `${SLUG_API}data/2.5/weather?id=520555&appid=${API_KEY}`
     );
 
     if (!response.ok) {

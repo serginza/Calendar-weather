@@ -1,9 +1,8 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
+import { DayWeek, GridDays, MonthSlider } from './components';
 import { CalendarWrapper } from './Сalendar.styles';
-import { MonthSlider } from './MonthSlider';
-import { DayWeek } from './DayWeek';
-import { GridDays } from './GridDays';
-import { useCalendar, useWeather } from '../model';
+import { useCalendar } from '../model/hooks';
+import { useWeatherStore } from '../model/stores';
 
 function CalendarFeatureProto() {
   // TODO: передавать пропсы контекстом
@@ -18,8 +17,14 @@ function CalendarFeatureProto() {
     isToday,
   } = useCalendar();
 
-  // TODO: передавать пропсы контекстом
-  const { weatherData, isLoading } = useWeather();
+  const { getCurrentWeather, currentData, clear, isLoading } =
+    useWeatherStore();
+
+  useEffect(() => {
+    getCurrentWeather();
+    return () => clear();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <CalendarWrapper>
@@ -35,7 +40,8 @@ function CalendarFeatureProto() {
         selectedDay={selectedDay}
         isToday={isToday}
         toggleDay={toggleDay}
-        weatherData={weatherData}
+        // TODO: переработать переменную с учетом прогноза
+        weatherData={currentData}
         isLoading={isLoading}
       />
     </CalendarWrapper>

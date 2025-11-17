@@ -12,7 +12,7 @@
   .cell {
     height: 80px;
     min-width: 80px;
-    border-radius: 10px;
+    border-radius: 2px;
     font-size: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -32,7 +32,7 @@
   }
 
   .today {
-    outline: 4px solid rgba(137, 188, 255, 0.75);
+    outline: 2px solid rgba(137, 188, 255, 0.75);
     // background-color: rgba(137, 198, 255, 1);
     // color: var(--frosted-white-100); 
     &:not(.selected):hover {

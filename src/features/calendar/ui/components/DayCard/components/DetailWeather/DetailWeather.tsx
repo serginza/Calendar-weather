@@ -1,11 +1,11 @@
 import { memo } from 'react';
-import type { CurrentUnitsType, CurrentWeatherType } from 'entities/weather';
+import type { ForecastDayType, ForecastUnitsType } from 'entities/weather';
 import { Icon, InfoField, WithSkeleton } from 'shared/ui';
 import './DetailWeather.styles.scss';
 
 type DetailWeatherProps = {
-  weatherData: CurrentWeatherType;
-  weatherUnits: CurrentUnitsType;
+  weatherData: ForecastDayType;
+  weatherUnits: ForecastUnitsType;
   isLoading: boolean;
 };
 

@@ -18,8 +18,8 @@ export const weatherAgent = {
   getForecastWeather: async (dayNumbers: number): ApiResponse<ForecastDto> => {
     return await axios.get(
       `${SLUG}${BASE_PATH}` +
-        `daily=weather_code,temperature_2m_min,temperature_2m_max,rain_sum,showers_sum,snowfall_sum,precipitation_sum,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,precipitation_hours&` +
-        `past_days=${3}&forecast_hours=${dayNumbers}&past_hours=12&temporal_resolution=native`
+        `daily=weather_code,temperature_2m_min,temperature_2m_max,rain_sum,showers_sum,snowfall_sum,precipitation_sum,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,cloud_cover_mean,temperature_2m_mean,pressure_msl_mean,relative_humidity_2m_mean,precipitation_hours&` +
+        `past_days=${0}&forecast_days=${dayNumbers}&forecast_hours=12&past_hours=12&temporal_resolution=native`
     );
   },
 };

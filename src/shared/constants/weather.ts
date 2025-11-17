@@ -1,11 +1,7 @@
 export const formatTemp = (temp: number): string | number => {
   const roundedTemp = Math.round(temp);
 
-  if (roundedTemp > 0) {
-    return `+${roundedTemp}`;
-  } else if (roundedTemp < 0) {
-    return `-${roundedTemp}`;
-  }
+  if (roundedTemp > 0) return `+${roundedTemp}`;
 
   return roundedTemp;
 };

@@ -24,10 +24,15 @@ export type CurrentUnitsType = {
 };
 
 export type ForecastDayType = {
+  iconName: string;
+  clouds: number;
   date: string;
   weatherCode: number;
-  temMin: number;
-  temMax: number;
+  humidity: string;
+  pressure: string;
+  temp: number | string;
+  temMin: number | string;
+  temMax: number | string;
   rain: number;
   showers: number;
   snowfall: number;
@@ -42,6 +47,8 @@ export type ForecastWeatherType = Record<string, ForecastDayType>;
 
 export type ForecastUnitsType = {
   temp: string;
+  humidity: string;
+  pressure: string;
   precipitation: string;
   precipitationHours: string;
   rain: string;

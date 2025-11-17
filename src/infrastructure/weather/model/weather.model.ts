@@ -77,6 +77,10 @@ type HourlyWeatherDto = {
 export type UnitsDailyDto = {
   time?: string;
   weather_code?: string;
+  cloud_cover_mean?: string;
+  pressure_msl_mean?: string;
+  relative_humidity_2m_mean?: string;
+  temperature_2m_mean?: string;
   temperature_2m_min?: string;
   temperature_2m_max?: string;
   rain_sum?: string;
@@ -92,6 +96,10 @@ export type UnitsDailyDto = {
 export type DailyWeatherDto = {
   time?: string[];
   weather_code?: number[];
+  cloud_cover_mean?: number[];
+  pressure_msl_mean?: number[];
+  relative_humidity_2m_mean?: number[];
+  temperature_2m_mean?: number[];
   temperature_2m_min?: number[];
   temperature_2m_max?: number[];
   rain_sum?: number[];

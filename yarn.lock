@@ -2217,11 +2217,6 @@ keyv@^4.5.4:
   dependencies:
     json-buffer "3.0.1"
 
-ky@^1.7.5:
-  version "1.8.1"
-  resolved "https://registry.npmjs.org/ky/-/ky-1.8.1.tgz"
-  integrity sha512-7Bp3TpsE+L+TARSnnDpk3xg8Idi8RwSLdj6CMbNWoOARIrGrbuLGusV0dYwbZOm4bB3jHNxSw8Wk/ByDqJEnDw==
-
 levn@^0.4.1:
   version "0.4.1"
   resolved "https://registry.npmjs.org/levn/-/levn-0.4.1.tgz"

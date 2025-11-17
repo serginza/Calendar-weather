@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { CURRENT_DAY, CURRENT_MONTH, CURRENT_YEAR } from 'shared/constants';
 
 export function useCalendar() {
@@ -44,10 +44,14 @@ export function useCalendar() {
     setSelectedDay(null);
   }, [month, year]);
 
-  const isToday = useCallback(
-    (day: number) =>
-      CURRENT_YEAR === year && CURRENT_MONTH === month && day === CURRENT_DAY,
+  const isCurrentMonth = useMemo(
+    () => CURRENT_YEAR === year && CURRENT_MONTH === month,
     [month, year]
+  );
+
+  const isToday = useCallback(
+    (day: number) => isCurrentMonth && day === CURRENT_DAY,
+    [isCurrentMonth]
   );
 
   // TODO: переместить в стили
@@ -62,6 +66,7 @@ export function useCalendar() {
     prevMonth,
     nextMonth,
     toggleDay,
+    isCurrentMonth,
     isToday,
     holidayStyle,
   };

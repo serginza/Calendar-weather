@@ -1,6 +1,7 @@
 import type {
   CurrentType,
   CurrentWeatherType,
+  ForecastDayType,
   ForecastType,
   ForecastWeatherType,
   WeatherParams,
@@ -25,6 +26,10 @@ type IntensityType = 'light' | 'medium' | 'heavy';
 const FORECAST_KEY_MAP: Record<string, string> = {
   time: 'date',
   weather_code: 'weatherCode',
+  cloud_cover_mean: 'clouds',
+  pressure_msl_mean: 'pressure',
+  relative_humidity_2m_mean: 'humidity',
+  temperature_2m_mean: 'temp',
   temperature_2m_min: 'temMin',
   temperature_2m_max: 'temMax',
   rain_sum: 'rain',
@@ -35,7 +40,7 @@ const FORECAST_KEY_MAP: Record<string, string> = {
   wind_speed_10m_max: 'windSpeed',
   wind_gusts_10m_max: 'windGusts',
   wind_direction_10m_dominant: 'windDirection',
-};
+} as const;
 
 const getWeatherIconName = (params: WeatherParams): string => {
   const { clouds, rain, snowfall, isDay } = params;
@@ -123,33 +128,90 @@ export const weatherAdapter = {
   },
 
   forecastWeather: (data: ForecastDto): ForecastType => {
+    // const formatForecast = (dailyData: DailyWeatherDto) => {
+    //   const forecast: Record<string, ForecastDayType> = {};
+
+    //   (dailyData.time ?? []).forEach((date, index) => {
+    //     const day = new Date(date).getDate().toString();
+    //     const entry: Partial<ForecastDayType> = { date };
+
+    //     for (const key in dailyData) {
+    //       if (Array.isArray(dailyData[key])) {
+    //         const value =
+    //           typeof dailyData[key][index] === 'number'
+    //             ? Math.round(dailyData[key][index])
+    //             : dailyData[key][index];
+
+    //         if (
+    //           FORECAST_KEY_MAP[key] === 'temMin' ||
+    //           FORECAST_KEY_MAP[key] === 'temMax'
+    //         ) {
+    //           entry[FORECAST_KEY_MAP[key] ?? key] = formatTemp(value);
+    //         } else {
+    //           entry[FORECAST_KEY_MAP[key] ?? key] = value;
+    //         }
+    //       }
+    //     }
+
+    //     forecast[day] = {
+    //       ...entry,
+    //       iconName: getWeatherIconName({
+    //         snowfall: entry.snowfall ?? 0,
+    //         clouds: entry.clouds ?? 0,
+    //         rain: entry.rain ?? 0,
+    //         isDay: true,
+    //       }),
+    //       // TODO: сделать типизацию карты ключей по ForecastDayType
+    //     } as ForecastDayType;
+    //   });
+
+    //   return forecast;
+    // };
+
     const formatForecast = (dailyData: DailyWeatherDto) => {
-      const forecast: Record<string, Record<string, string | number>> = {};
+      const forecast: ForecastWeatherType = {};
 
       (dailyData.time ?? []).forEach((date, index) => {
         const day = new Date(date).getDate().toString();
-        const entry: Record<string, string | number> = { date };
+        const entry: Partial<ForecastDayType> = { date };
 
-        for (const key in dailyData) {
-          if (Array.isArray(dailyData[key])) {
-            const value =
-              typeof dailyData[key][index] === 'number'
-                ? Math.round(dailyData[key][index])
-                : dailyData[key][index];
+        for (const [key, values] of Object.entries(dailyData)) {
+          if (!Array.isArray(values)) continue;
 
-            entry[FORECAST_KEY_MAP[key] ?? key] = value;
-          }
+          const mappedKey = FORECAST_KEY_MAP[key] ?? key;
+          const rawValue = values[index];
+          const value =
+            typeof rawValue === 'number' ? Math.round(rawValue) : rawValue;
+
+          entry[mappedKey] =
+            (mappedKey === 'temMin' ||
+              mappedKey === 'temMax' ||
+              mappedKey === 'temp') &&
+            typeof value === 'number'
+              ? formatTemp(value)
+              : value;
         }
 
-        forecast[day] = entry;
+        forecast[day] = {
+          ...entry,
+          iconName: getWeatherIconName({
+            snowfall: entry.snowfall ?? 0,
+            clouds: entry.clouds ?? 0,
+            rain: entry.rain ?? 0,
+            isDay: true,
+          }),
+          // TODO: сделать типизацию карты ключей по ForecastDayType и привести к ForecastDayType
+        } as ForecastDayType;
       });
 
-      return forecast as ForecastWeatherType;
+      return forecast;
     };
 
     const formatUnits = (units: UnitsDailyDto) => {
       return {
         temp: isValueExist(units.temperature_2m_min, '°C'),
+        humidity: isValueExist(units.relative_humidity_2m_mean, '%'),
+        pressure: isValueExist(units.pressure_msl_mean, 'hPa'),
         precipitation: isValueExist(units.precipitation_sum, 'mm'),
         precipitationHours: isValueExist(units.precipitation_hours, 'h'),
         rain: isValueExist(units.rain_sum, 'mm'),
